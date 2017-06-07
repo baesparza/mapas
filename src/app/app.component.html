@@ -10,14 +10,21 @@
         </div>
         <div class="col-md-9">
 
-            <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+            <sebm-google-map 
+                    [latitude]="lat" 
+                    [longitude]="lng" 
+                    [zoom]="zoom"
+                    (mapClick)="clickMapa( $event )">
 
-            <sebm-google-map-marker [latitude]="lat" [longitude]="lng">
+            <sebm-google-map-marker *ngFor="let marcador of _mapasService.marcadores"
+                    [latitude]="marcador.lat"
+                    [longitude]="marcador.lng"
+                    [markerDraggable]="marcador.draggable">
 
                 <sebm-google-map-info-window>
-                    <strong>Titulo</strong>
-                    <p>
-                        Plaza de San Sebastian
+                    <strong>{{ marcador.titulo }}</strong>
+                    <p *ngIf="marcador.desc">
+                        {{ marcador.desc }}
                     </p>
                     </sebm-google-map-info-window>
 
