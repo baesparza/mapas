@@ -15,7 +15,9 @@ export class AppComponent {
   zoom: number = 17;
 
 
-  constructor ( public _mapasService: MapasService ) {}
+  constructor ( public _mapasService: MapasService ) {
+    this._mapasService.cargarMarcadores();
+  }
 
 
   clickMapa( event ) {
@@ -28,6 +30,7 @@ export class AppComponent {
     };
 
     this._mapasService.insertar_marcador( marcador );
+    this._mapasService.guardarMarcadores();
 
     // console.log(event);
   }
