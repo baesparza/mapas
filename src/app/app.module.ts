@@ -6,6 +6,9 @@ import { HttpModule } from '@angular/http';
 // Google maps
 import { AgmCoreModule } from 'angular2-google-maps/core';
 
+// Services
+import { MapasService } from './services/mapas.service';
+
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
@@ -22,7 +25,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
       apiKey: 'AIzaSyC3jpofgJs7KvAnB1kLe8mg9AxKH-r8aXk'
     })
   ],
-  providers: [],
+  providers: [
+    MapasService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
