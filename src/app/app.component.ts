@@ -35,4 +35,15 @@ export class AppComponent {
     // console.log(event);
   }
 
+  clickMarcador(marcador: Marcador, i: number) {
+    console.log(marcador, i);
+  }
+
+  actualizarMarcador(marcador: Marcador, event) {
+    // console.log(marcador, event);
+    marcador.lat = event.coords.lat;
+    marcador.lng = event.coords.lng;
+    this._mapasService.guardarMarcadores();
+  }
+
 }

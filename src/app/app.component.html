@@ -16,10 +16,12 @@
                     [zoom]="zoom"
                     (mapClick)="clickMapa( $event )">
 
-            <sebm-google-map-marker *ngFor="let marcador of _mapasService.marcadores"
+            <sebm-google-map-marker *ngFor="let marcador of _mapasService.marcadores; let i = index"
                     [latitude]="marcador.lat"
                     [longitude]="marcador.lng"
-                    [markerDraggable]="marcador.draggable">
+                    [markerDraggable]="marcador.draggable"
+                    (markerClick)="clickMarcador(marcador, i)"
+                    (dragEnd)="actualizarMarcador(marcador, $event)">
 
                 <sebm-google-map-info-window>
                     <strong>{{ marcador.titulo }}</strong>
