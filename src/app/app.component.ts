@@ -40,7 +40,7 @@ export class AppComponent {
     let marcador: Marcador = {
       lat : event.coords.lat,
       lng : event.coords.lng,
-      titulo: 'Nuevo Marcador',
+      titulo: '',
       draggable: true,
       desc: ''
     };
@@ -74,6 +74,7 @@ export class AppComponent {
   borrar(index: number) {
     this._mapasService.borrarMarcador(index);
     this._mapasService.guardarMarcadores();
+    this.marcadorShell = null;
   }
 
 }
