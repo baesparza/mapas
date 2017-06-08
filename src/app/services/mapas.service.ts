@@ -33,5 +33,13 @@ export class MapasService {
       this.marcadores = [];
     }
   }
+  
+  actualizarMarcador(i: number, marcador: Marcador) {
+    this.marcadores[i] = marcador;
+  }
+
+  borrarMarcador(i: number) {
+    this.marcadores.splice(i, 1);
+  }
 
 }

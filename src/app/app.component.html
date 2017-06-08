@@ -6,7 +6,30 @@
     <div class="row">
 
         <div class="col-md-3">
-            <h3>Marcador</h3>
+            <div *ngIf="marcadorShell">
+                <h3>Marcador</h3>
+                <hr>
+                <form [formGroup]="marcador_forma">
+                    <div class="form-group">
+                        <label>Nombre del marcador</label>
+                        <input formControlName="titulo"
+                            type="text" class="form-control" placeholder="Nombre">
+                    </div>
+                    <div class="form-group">
+                        <label>Descripcion</label>
+                        <textarea formControlName="desc"
+                            type="text" class="form-control" placeholder="Descripcion" rows="3">
+                        </textarea>
+                    </div>
+                    <label class="custom-control custom-checkbox">
+                        <input formControlName="draggable"
+                            type="checkbox" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">Mover</span>
+                    </label>
+                </form>
+                <button type="button" class="btn btn-secondary btn-block" (click)="actualizarMarcador()" [disabled]="!marcador_forma.valid">Guardar</button>
+            </div>
         </div>
         <div class="col-md-9">
 
@@ -16,17 +39,21 @@
                     [zoom]="zoom"
                     (mapClick)="clickMapa( $event )">
 
-            <sebm-google-map-marker *ngFor="let marcador of _mapasService.marcadores; let i = index"
+            <sebm-google-map-marker *ngFor="let marcador of _mapasService.marcadores; let i = index" 
                     [latitude]="marcador.lat"
                     [longitude]="marcador.lng"
                     [markerDraggable]="marcador.draggable"
                     (markerClick)="clickMarcador(marcador, i)"
-                    (dragEnd)="actualizarMarcador(marcador, $event)">
+                    (dragEnd)="actualizarMarcadorPocicion(marcador, $event)">
 
                 <sebm-google-map-info-window>
                     <strong>{{ marcador.titulo }}</strong>
                     <p *ngIf="marcador.desc">
                         {{ marcador.desc }}
+                    </p>
+                    <hr>
+                    <p>
+                        <a class="text-danger puntero" (click)="borrar(i)">Borrar marcador</a>
                     </p>
                     </sebm-google-map-info-window>
 
@@ -39,5 +66,3 @@
     </div>
 
 </div>
-
-
