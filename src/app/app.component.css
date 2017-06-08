@@ -1,3 +1,7 @@
 .sebm-google-map-container {
   height: 600px;
 }
+
+.puntero{
+  cursor: pointer;
+}
